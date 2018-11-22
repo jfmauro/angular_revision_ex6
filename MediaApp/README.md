@@ -13,7 +13,7 @@ This project is intended to study angular 2.
   }
 
   */
-
+```
   getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.baseUrl);
   }
@@ -32,3 +32,4 @@ This project is intended to study angular 2.
 	   this.movieService.getMovies()
                       .subscribe(movies => this.movies=movies);
   }
+```
