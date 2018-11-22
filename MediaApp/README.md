@@ -1,27 +1,34 @@
 # MediaApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.0-beta.0.
+This project is intended to study angular 2.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  /*
+  getMovies(){
+	   return this.movies;
+  }
 
-## Code scaffolding
+  getMovie(id: number){
+    return this.movies.find(movie => movie.id === id);
+  }
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  */
 
-## Build
+  getMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl);
+  }
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  getMovie(id:number){
+    return this.http.get<Movie>(this.baseUrl + '/' + id);
+  }
+  
+  ngOnInit() {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.movieService.getMovie(parseInt(id, 10))
+                     .subscribe(movie => this.movie=movie);
+  }
+  
+   ngOnInit(){
+	   this.movieService.getMovies()
+                      .subscribe(movies => this.movies=movies);
+  }
