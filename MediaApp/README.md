@@ -2,7 +2,7 @@
 
 This project is intended to study angular 2.
 
-
+```
   /*
   getMovies(){
 	   return this.movies;
@@ -13,7 +13,7 @@ This project is intended to study angular 2.
   }
 
   */
-```
+
   getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.baseUrl);
   }
